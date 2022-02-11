@@ -17,6 +17,10 @@ export default class DrawSpace {
         this._context = this._canvas.getContext('2d');
     }
 
+    public get __raw() {
+        return this._context;
+    }
+
     // Importing images
 
     /**
@@ -91,7 +95,7 @@ export default class DrawSpace {
 
             const computed_x = current_x - (align === 'center' ? width / 2 : align === 'right' ? width : 0);
             this._context.fillStyle = instruction.colour;
-            this._context.font = default_size + 'px' + ' ' + font;
+            this._context.font = `${default_size}px ${font}`;
             this._context.fillText(instruction.text, computed_x, y_pos);
 
             current_x += this._context.measureText(instruction.text).width;
@@ -253,7 +257,7 @@ export default class DrawSpace {
      * @returns DrawSpace
      */
     public register_font(font: string, path: string) {
-        GlobalFonts.registerFromPath(font, path);
+        if(!GlobalFonts.registerFromPath(font, path)) throw new Error(`Unable to register font ${font}`);
         return this;
     }
 
