@@ -1,0 +1,42 @@
+{
+  "name": "drawspace",
+  "version": "1.0.0",
+  "description": "A quick and easy skia canvas wrapper.",
+  "main": "dist/lib.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --require esbuild-register test/test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tascord/DrawSpace.git"
+  },
+  "keywords": [
+    "canvas",
+    "draw",
+    "quick",
+    "easy",
+    "beginner",
+    "2d",
+    "art",
+    "graphics"
+  ],
+  "author": "tascord",
+  "license": "ISC",
+  "types": "./dist/lib.d.ts",
+  "bugs": {
+    "url": "https://github.com/tascord/DrawSpace/issues"
+  },
+  "homepage": "https://github.com/tascord/DrawSpace#readme",
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.19",
+    "axios": "^0.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "esbuild": "^0.14.21",
+    "esbuild-register": "^3.3.2"
+  }
+}
