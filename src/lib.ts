@@ -118,9 +118,13 @@ export default class DrawSpace {
      * @param colour Colour to fill the rectangle
      * @returns DrawSpace
      */
-    public draw_rect(x: number, y: number, width: number, height: number, colour: `#${string}`) {
+    public draw_rect(x: number, y: number, width: number, height: number, colour: `#${string}`, fill: boolean = true) {
         this._context.fillStyle = colour;
-        this._context.fillRect(x, y, width, height);
+        this._context.strokeStyle = colour;
+
+        if (fill) this._context.fillRect(x, y, width, height);
+        else this._context.strokeRect(x, y, width, height);
+
         this._context.fillStyle = '#ffffff';
         return this;
     }
@@ -184,8 +188,8 @@ export default class DrawSpace {
      * @param height Height of the image
      * @returns Promise of DrawSpace
      */
-    public async draw_image(path_or_url_or_image: Image | string, x: number, y: number, width: number, height: number) {
-        this._context.fillStyle = '#ffffff';
+    public async draw_image(path_or_url_or_image: Image | string, x: number, y: number, width: number, height: number, colour: `#${string}` = '#ffffff') {
+        this._context.fillStyle = colour;
         this._context.drawImage(
             path_or_url_or_image instanceof Image ? path_or_url_or_image : await this.load_image(path_or_url_or_image, width, height),
             x, y, width, height
@@ -257,7 +261,7 @@ export default class DrawSpace {
      * @returns DrawSpace
      */
     public register_font(font: string, path: string) {
-        if(!GlobalFonts.registerFromPath(font, path)) throw new Error(`Unable to register font ${font}`);
+        if (!GlobalFonts.registerFromPath(font, path)) throw new Error(`Unable to register font ${font}`);
         return this;
     }
 

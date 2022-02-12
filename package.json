@@ -1,6 +1,6 @@
 {
   "name": "drawspace",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A quick and easy skia canvas wrapper.",
   "main": "dist/lib.js",
   "directories": {
